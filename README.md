@@ -69,11 +69,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 1. Make sure Composer, PHP 8.0 & some sort of database system are installed on the system
 2. Run `composer install`
 3. Make sure the .env is set up properly, especially the following values:
-SSO_CLIENT_ID=8     - The Client ID received by running `php artisan passport:install` on the main SSO application. NOTE: Make sure to use the client id of the 'Laravel Password Grant Client'
-SSO_CLIENT_SECRET="Gx66lyGAyy7sYHsefNw7NXZj6gYpKwYo0du2cd4v"  - The Client Secret received by running `php artisan passport:install` on the main SSO application. NOTE: Make sure to use the client secret of the 'Laravel Password Grant Client'
+SSO_CLIENT_ID=8     - The Client ID received by running `php artisan passport:client` on the main SSO application. NOTE: Make sure to use the client id of the 'Laravel Password Grant Client'
+SSO_CLIENT_SECRET="Gx66lyGAyy7sYHsefNw7NXZj6gYpKwYo0du2cd4v"  - The Client Secret received by running `php artisan passport:client` on the main SSO application. NOTE: Make sure to use the client secret of the 'Laravel Password Grant Client'
 SSO_CALLBACK="http://127.0.0.1:8001/callback"       - Callback url for this application
 SSO_HOST="http://127.0.0.1:8000"        - Host URL that the main SSO application runs on.
-
 4. Run `php artisan migrate`
-5. Run `npm install` & `npm run dev` to get a front-end setup properly.
-6. Run the program, either through a webserver or through `php artisan serve`
+5. Run `php artisan optimize` to load in cache, config, routes etc.
+6. Run `npm install` & `npm run dev` to get a front-end setup properly.
+7. Run the program, either through a webserver or through `php artisan serve`
+8. Navigate to the application's url
