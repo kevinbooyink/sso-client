@@ -17,10 +17,6 @@ use App\Http\Controllers\SSO\SSOController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get("/sso/login", [SSOController::class, 'login'])->name("sso.login");
 
 Route::get("/callback", [SSOController::class,'callback'])->name("sso.callback");

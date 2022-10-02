@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -41,5 +44,23 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         abort(404);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::user()->ssoLogout();
+
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+        ? new JsonResponse([], 204)
+        : redirect('/');
     }
 }
